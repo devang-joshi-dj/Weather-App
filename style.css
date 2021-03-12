@@ -15,3 +15,52 @@ html, body {
   user-select: none;
   color: white;
 }
+
+.input {
+  text-align: center;
+  margin: 0 0 25px 0;
+}
+
+input[type="text"] {
+  height: 50px;
+  width: 600px;
+  background: #e7e7e7;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  border-radius: 2px;
+  padding: 10px 10px;
+}
+
+input[type="submit"] {
+  height: 50px;
+  width: 100px;
+  background: #e7e7e7;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.display {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+p {
+  font-size: 2em;
+}
+
+.temperature {
+  cursor: pointer;
+}
+
+h1:hover, p:hover {
+  color: rgb(31, 85, 129);
+}
