@@ -2,7 +2,7 @@
 
 ### **Description**
 
-  Its a Web Application which is Weather App
+  Its a Web Application which is a Weather App
 
 ### **Technologies** 
 
