@@ -43,10 +43,7 @@ window.onload = () => {
       api = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=defa6d4900ca4eeb2dfc9dfc8eac780e&units=metric';
       fetch(api)
         .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          getSetValues(data);
-        })
+        .then(data => {getSetValues(data);})
         .catch(err => alert(err));
     });
   }
@@ -90,10 +87,7 @@ window.onload = () => {
     api = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=defa6d4900ca4eeb2dfc9dfc8eac780e&units=metric';
     fetch(api)
       .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        getSetValues(data)
-      })
+      .then(data => {getSetValues(data)})
       .catch(err => alert('Not Valid Input. Enter A City.'));
   });
 
