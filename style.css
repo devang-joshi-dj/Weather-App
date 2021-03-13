@@ -69,7 +69,7 @@ p {
   font-size: 2em;
 }
 
-.temperature, .feels {
+.temperature, .feelsLike {
   cursor: pointer;
 }
 

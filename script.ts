@@ -13,6 +13,8 @@ window.onload = () => {
 
   let long: number;
   let lat: number;
+  const id: string = 'defa6d4900ca4eeb2dfc9dfc8eac780e';
+  const units: string = 'metric';
   let api: string;
   
   // to focus input element on page load
@@ -40,10 +42,10 @@ window.onload = () => {
       lat = position.coords.latitude;
 
       // fetching api
-      api = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=defa6d4900ca4eeb2dfc9dfc8eac780e&units=metric';
+      api = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=' + id + '&units=' + units;
       fetch(api)
         .then(response => response.json())
-        .then(data => {getSetValues(data);})
+        .then(data => { getSetValues(data); })
         .catch(err => alert(err));
     });
   }
@@ -63,8 +65,7 @@ window.onload = () => {
     if (tempScale.innerHTML == 'C') {
       temp.innerHTML = celciusToFahrenheit(temp).toFixed(2);
       tempScale.innerHTML = 'F';
-    }else
-    if (tempScale.innerHTML == 'F') {
+    }else {
       temp.innerHTML = FahrenheitToCelcius(temp).toFixed(2);
       tempScale.innerHTML = 'C';
     }
@@ -75,8 +76,7 @@ window.onload = () => {
     if (feelsScale.innerHTML == 'C') {
       feels.innerHTML = celciusToFahrenheit(feels).toFixed(2);
       feelsScale.innerHTML = 'F';
-    }else
-    if (feelsScale.innerHTML == 'F') {
+    }else {
       feels.innerHTML = FahrenheitToCelcius(feels).toFixed(2);
       feelsScale.innerHTML = 'C';
     }
@@ -84,10 +84,10 @@ window.onload = () => {
 
   button.addEventListener('click', () => {
     // event listener to fetch api when button is clicked
-    api = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=defa6d4900ca4eeb2dfc9dfc8eac780e&units=metric';
+    api = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=' + id + '&units=' + units;
     fetch(api)
       .then(response => response.json())
-      .then(data => {getSetValues(data)})
+      .then(data => { getSetValues(data); })
       .catch(err => alert('Not Valid Input. Enter A City.'));
   });
 
