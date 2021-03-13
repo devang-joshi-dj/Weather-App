@@ -20,7 +20,7 @@ window.onload = () => {
   // to focus input element on page load
   input.focus();
 
-  const getSetValues = (data) => {
+  const getSetValues:any = (data:any) => {
     // function to get Values from Weather API and set them in HTML Elements
     let tempValue = data['main']['temp'];
     let nameValue = data['name'];
@@ -46,41 +46,45 @@ window.onload = () => {
       fetch(api)
         .then(response => response.json())
         .then(data => { getSetValues(data); })
-        .catch(err => alert(err));
+        .catch(err => showErrorMessage(err));
     });
   }
 
-  const celciusToFahrenheit = value => {
-    // function to convert degrees to fahrenheit
-    return ((value.innerHTML * 1.8) + 32);
+  const showErrorMessage:any = (error:string) => {
+    alert(error);
   }
 
-  const FahrenheitToCelcius = value => {
+  const celciusToFahrenheit:any = (value:any) => {
+    // function to convert degrees to fahrenheit
+    return ((value.innerHTML * 1.8) + 32).toFixed(2);
+  }
+
+  const FahrenheitToCelcius:any = (value:any) => {
     // function to convert fahrenheit to celcius
-    return ((value.innerHTML - 32) / 1.8);
+    return ((value.innerHTML - 32) / 1.8).toFixed(2);
   }
 
   temperature.addEventListener('click', () => {
     // event listener to change temperature scale from degrees to fahrenheit and vice versa of Actual Temperature
     if (tempScale.innerHTML == 'C') {
-      temp.innerHTML = celciusToFahrenheit(temp).toFixed(2);
+      temp.innerHTML = celciusToFahrenheit(temp);
       tempScale.innerHTML = 'F';
-    }else {
-      temp.innerHTML = FahrenheitToCelcius(temp).toFixed(2);
+    } else {
+      temp.innerHTML = FahrenheitToCelcius(temp);
       tempScale.innerHTML = 'C';
     }
-  })
+  });
   
   feelsLike.addEventListener('click', () => {
     // event listener to change temperature scale from degrees to fahrenheit and vice versa of Feels Like Temperature
     if (feelsScale.innerHTML == 'C') {
-      feels.innerHTML = celciusToFahrenheit(feels).toFixed(2);
+      feels.innerHTML = celciusToFahrenheit(feels);
       feelsScale.innerHTML = 'F';
-    }else {
-      feels.innerHTML = FahrenheitToCelcius(feels).toFixed(2);
+    } else {
+      feels.innerHTML = FahrenheitToCelcius(feels);
       feelsScale.innerHTML = 'C';
     }
-  })
+  });
 
   button.addEventListener('click', () => {
     // event listener to fetch api when button is clicked
@@ -88,16 +92,20 @@ window.onload = () => {
     fetch(api)
       .then(response => response.json())
       .then(data => { getSetValues(data); })
-      .catch(err => alert('Not Valid Input. Enter A City.'));
+      .catch(err => showErrorMessage('Not Valid Input. Enter A City.'));
   });
+
+  const isFocused:any = (element:any) => {
+    return document.activeElement === element;
+  }
 
   document.addEventListener('keyup', (e) => {
     // button to check whether enter key is pressed while user is focused in  
-      var code = (e.keyCode ? e.keyCode : e.which);
+    var code = (e.keyCode ? e.keyCode : e.which);
     if (code == 13) {
-      if (document.activeElement === input) {
+      if (isFocused(input)) {
         button.click();
       }
     }
-  })
+  });
 }
