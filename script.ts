@@ -1,15 +1,15 @@
-window.onload = () => {
-  const button: any = (<HTMLInputElement>document.querySelector('.button'));
+window.onload = (): void => {
+  const button: any = (<HTMLElement>document.querySelector('.button'));
   const input: any = (<HTMLInputElement>document.querySelector('.inputValue'));
-  const name: any = (<HTMLInputElement>document.querySelector('.name'));
-  const temperature: any = (<HTMLInputElement>document.querySelector('.temperature'));
-  const temp: any = (<HTMLInputElement>document.querySelector('.temp'));
-  const tempScale: any = (<HTMLInputElement>document.querySelector('.tempScale'));
-  const desc: any = (<HTMLInputElement>document.querySelector('.desc'));
-  const feelsLike: any = (<HTMLInputElement>document.querySelector('.feelsLike'));
-  const feelsLabel: any = (<HTMLInputElement>document.querySelector('.feelsLabel'));
-  const feels: any = (<HTMLInputElement>document.querySelector('.feels'));
-  const feelsScale: any = (<HTMLInputElement>document.querySelector('.feelsScale'));
+  const name: any = (<HTMLElement>document.querySelector('.name'));
+  const temperature: any = (<HTMLElement>document.querySelector('.temperature'));
+  const temp: any = (<HTMLElement>document.querySelector('.temp'));
+  const tempScale: any = (<HTMLElement>document.querySelector('.tempScale'));
+  const desc: any = (<HTMLElement>document.querySelector('.desc'));
+  const feelsLike: any = (<HTMLElement>document.querySelector('.feelsLike'));
+  const feelsLabel: any = (<HTMLElement>document.querySelector('.feelsLabel'));
+  const feels: any = (<HTMLElement>document.querySelector('.feels'));
+  const feelsScale: any = (<HTMLElement>document.querySelector('.feelsScale'));
 
   let long: number;
   let lat: number;
@@ -20,7 +20,7 @@ window.onload = () => {
   // to focus input element on page load
   input.focus();
 
-  const getSetValues:any = (data:any) => {
+  const getSetValues = (data:any):void => {
     // function to get Values from Weather API and set them in HTML Elements
     let tempValue = data['main']['temp'];
     let nameValue = data['name'];
@@ -50,16 +50,17 @@ window.onload = () => {
     });
   }
 
-  const showErrorMessage:any = (error:string) => {
+  const showErrorMessage = (error: string): void => {
+    // function to show error message
     alert(error);
   }
 
-  const celciusToFahrenheit:any = (value:any) => {
+  const celciusToFahrenheit = (value: any): string => {
     // function to convert degrees to fahrenheit
     return ((value.innerHTML * 1.8) + 32).toFixed(2);
   }
 
-  const FahrenheitToCelcius:any = (value:any) => {
+  const FahrenheitToCelcius = (value: any): string => {
     // function to convert fahrenheit to celcius
     return ((value.innerHTML - 32) / 1.8).toFixed(2);
   }
@@ -75,7 +76,7 @@ window.onload = () => {
     }
   });
   
-  feelsLike.addEventListener('click', () => {
+  feelsLike.addEventListener('click', ():void => {
     // event listener to change temperature scale from degrees to fahrenheit and vice versa of Feels Like Temperature
     if (feelsScale.innerHTML == 'C') {
       feels.innerHTML = celciusToFahrenheit(feels);
@@ -86,7 +87,7 @@ window.onload = () => {
     }
   });
 
-  button.addEventListener('click', () => {
+  button.addEventListener('click', ():void => {
     // event listener to fetch api when button is clicked
     api = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=' + id + '&units=' + units;
     fetch(api)
@@ -95,11 +96,11 @@ window.onload = () => {
       .catch(err => showErrorMessage('Not Valid Input. Enter A City.'));
   });
 
-  const isFocused:any = (element:any) => {
+  const isFocused = (element: HTMLElement):boolean => {
     return document.activeElement === element;
   }
 
-  document.addEventListener('keyup', (e) => {
+  document.addEventListener('keyup', (e: any):void => {
     // button to check whether enter key is pressed while user is focused in  
     var code = (e.keyCode ? e.keyCode : e.which);
     if (code == 13) {

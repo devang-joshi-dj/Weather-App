@@ -44,6 +44,7 @@ window.onload = function () {
         });
     }
     var showErrorMessage = function (error) {
+        // function to show error message
         alert(error);
     };
     var celciusToFahrenheit = function (value) {
